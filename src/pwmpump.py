@@ -1,9 +1,14 @@
 import gpiozero
+from datetime import datetime, timedelta
+out = gpiozero.PWMOutputDevice(13)
+out.frequency = 100
+out.value = 0.3
+newNow = datetime.now() + timedelta(seconds=2)
+booleanTime = True
 
+while booleanTime:
+    out.on
+    if newNow - datetime.now() < timedelta(seconds=0):
+        booleanTime = False
 
-def drive_pump():
-    out = gpiozero.PWMOutputDevice(18)
-
-    while True:
-        out.frequency = 2000
-        out.value = 0.3
+out.off

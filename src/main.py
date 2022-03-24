@@ -58,6 +58,6 @@ if __name__ == "__main__":
             print("Starting to make coffee...")
             sleep(0.2)
             # turn pump ON
-            pwmpump.drive_pump()
+            pwmpump.pump_water(5)
             # then turn the coffee machine ON
             pwmmotor.drive_motor()

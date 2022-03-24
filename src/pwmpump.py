@@ -1,4 +1,5 @@
 import gpiozero
+import time
 from datetime import datetime, timedelta
 
 
@@ -10,7 +11,10 @@ booleanTime = True
 
 while booleanTime:
     out.on
+    """
     if newNow - datetime.now() < timedelta(seconds=0):
         booleanTime = False
+    """
+    time.sleep(10)
 
 out.off

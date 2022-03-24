@@ -58,5 +58,6 @@ if __name__ == "__main__":
             sleep(0.2)
             # turn pump ON
             pwmpump.pump_water(5)
+            stop_alarm = True
             # then turn the coffee machine ON
             # pwmmotor.drive_motor()

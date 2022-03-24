@@ -11,10 +11,9 @@ booleanTime = True
 
 while booleanTime:
     out.on
-    """
     if newNow - datetime.now() < timedelta(seconds=0):
         booleanTime = False
-    """
-    time.sleep(10)
 
-out.off
+while True:
+    out.off
+

@@ -14,6 +14,5 @@ while booleanTime:
     if newNow - datetime.now() < timedelta(seconds=0):
         booleanTime = False
 
-while True:
-    out.off()
+out.off()
 

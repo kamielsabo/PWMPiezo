@@ -10,7 +10,7 @@ newNow = datetime.now() + timedelta(seconds=100)
 booleanTime = True
 
 while booleanTime:
-    out.on()
+    #out.on()
     if newNow - datetime.now() < timedelta(seconds=0):
         booleanTime = False
 

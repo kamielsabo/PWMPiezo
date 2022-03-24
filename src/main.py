@@ -10,13 +10,9 @@ from datetime import datetime, timedelta
 import pwmpump
 import pwmmotor
 import requests
-import RPi.GPIO as GPIO
 
 
 if __name__ == "__main__":
-
-    GPIO.setwarnings(False)  # Ignore warning for now
-    GPIO.setmode(GPIO.BOARD)  # Use physical pin numbering
 
     # Query buffer start parameters
     today_plus_delta = datetime.now()

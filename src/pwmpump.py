@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 out = gpiozero.PWMOutputDevice(13)
 out.frequency = 200
 out.value = 0.2
-newNow = datetime.now() + timedelta(seconds=7)
+newNow = datetime.now() + timedelta(seconds=2)
 booleanTime = True
 
 while booleanTime:

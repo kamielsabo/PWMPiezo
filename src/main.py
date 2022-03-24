@@ -3,6 +3,9 @@
 
 from time import sleep, strftime
 from datetime import datetime, timedelta
+import gpiozero
+import time
+from datetime import datetime, timedelta
 
 import pwmpump
 import pwmmotor
@@ -60,4 +63,4 @@ if __name__ == "__main__":
             # turn pump ON
             pwmpump.pump_water(5)
             # then turn the coffee machine ON
-            pwmmotor.drive_motor()
+            # pwmmotor.drive_motor()

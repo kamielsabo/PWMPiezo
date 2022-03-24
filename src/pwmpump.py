@@ -14,7 +14,6 @@ while booleanTime:
     if newNow - datetime.now() < timedelta(seconds=0):
         booleanTime = False
 
-out = gpiozero.DigitalOutputDevice(13)
 out.off()
 
 while True:

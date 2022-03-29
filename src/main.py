@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 
 import pwmpump
 import pwmmotor
-# import requests
+import requests
 
 
 if __name__ == "__main__":

@@ -37,6 +37,7 @@ if __name__ == "__main__":
         if seconds_to_new_query < 0:
             stop_alarm = False
             print("Sending query to database...")
+            print(volume)
             datetime_alarm = requests.get('https://studev.groept.be/api/a21ib2b02/readnext').json()
 
             # Duplicate code that will be removed

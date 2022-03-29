@@ -1,14 +1,13 @@
 #!/usr/bin/env python3.2.3
 # Date And Time Script
 
-from time import sleep, strftime
-from datetime import datetime, timedelta
+from time import sleep
 import gpiozero
 import time
 from datetime import datetime, timedelta
 
 import pwmpump
-import pwmmotor
+# import pwmmotor
 import requests
 
 

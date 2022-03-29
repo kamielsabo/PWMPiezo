@@ -6,5 +6,6 @@ servo = Servo(12)
 while True:
     servo.max()
     sleep(5)
-    servo.min()
-    sleep(5)
+    servo.mid()
+    sleep(1)
+

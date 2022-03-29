@@ -7,5 +7,5 @@ while True:
     servo.max()
     sleep(5)
     servo.mid()
-    sleep(1)
+    sleep(0.5)
 

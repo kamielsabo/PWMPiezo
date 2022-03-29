@@ -16,4 +16,9 @@ while pressing:
     if stopTime - datetime.now() < timedelta(seconds = 0):
         pressing = False
 
+releasing = True
 servo.max()
+while releasing:
+    if stopTime - datetime.now() < timedelta(seconds = 0):
+        releasing = False
+

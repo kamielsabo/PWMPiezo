@@ -16,9 +16,13 @@ while pressing:
     if stopTime - datetime.now() < timedelta(seconds = 0):
         pressing = False
 
+#setup time interval to release button
+timeMax = 0.5
+stopTime = datetime.now() + timedelta(secpnds=timeMax)
+
+# release button
 releasing = True
 servo.max()
 while releasing:
     if stopTime - datetime.now() < timedelta(seconds = 0):
         releasing = False
-

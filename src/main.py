@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 
 import pwmpump
 import pwmmotor
-import requests
+# import requests
 
 
 if __name__ == "__main__":
@@ -57,7 +57,7 @@ if __name__ == "__main__":
             print("Starting to make coffee...")
             sleep(0.2)
             # turn pump ON
-            pwmpump.pump_water(5)
+            pwmpump.pump_water(15)
             stop_alarm = True
             # then turn the coffee machine ON
             # pwmmotor.drive_motor()

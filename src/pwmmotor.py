@@ -1,9 +1,20 @@
 import gpiozero
-import time
+from datetime import datetime, timedelta
 
 def switch_coffee_machine():
+    # setup servo
     servo = gpiozero.Servo(12)
     servo.max()
-    time.sleep(5)
+
+    # setup time interval that button is pressed
+    timeMid = 0.5
+    stopTime = datetime.now() + timedelta(seconds=timeMid)
+    pressing = True
+
+    # press button
     servo.mid()
-    time.sleep(0.5)
+    while pressing:
+        if stopTime - datetime.now() < timedelta(seconds = 0):
+            pressing = False
+
+    servo.max()

@@ -1,5 +1,4 @@
 import gpiozero
-import time
 from datetime import datetime, timedelta
 
 def pump_water(volumeCl):

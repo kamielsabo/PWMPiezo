@@ -18,7 +18,7 @@ while pressing:
 
 #setup time interval to release button
 timeMax = 0.5
-stopTime = datetime.now() + timedelta(secpnds=timeMax)
+stopTime = datetime.now() + timedelta(seconds=timeMax)
 
 # release button
 releasing = True

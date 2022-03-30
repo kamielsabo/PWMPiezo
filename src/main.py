@@ -2,17 +2,16 @@
 # Date And Time Script
 
 from time import sleep
-import gpiozero
-import time
 from datetime import datetime, timedelta
 
 import pwmpump
 import pwmmotor
 import requests
-
+import sensors
 
 if __name__ == "__main__":
-
+    # Define sensor channel
+    temp_channel = 0
     # Query buffer start parameters
     today_plus_delta = datetime.now()
     now = datetime.now()
@@ -42,7 +41,7 @@ if __name__ == "__main__":
             datetime_alarm = requests.get('https://studev.groept.be/api/a21ib2b02/readnext').json()
 
             # Duplicate code that will be removed
-            if datetime_alarm:
+            if len(datetime_alarm) != 0:
                 a = str(datetime_alarm[0]['alarm_datetime'])
                 # print(a)
                 # print(a[:4], a[5:7], a[8:10], a[11:13], a[14:])
@@ -55,7 +54,7 @@ if __name__ == "__main__":
 
         time_left = alarm - datetime.now()
 
-        if time_left < timedelta(seconds=0) and not stop_alarm:
+        if time_left < timedelta(seconds=0) and not stop_alarm and len(datetime_alarm) != 0:
             print("Starting to make coffee...")
             sleep(0.2)
             # turn pump ON
@@ -63,3 +62,20 @@ if __name__ == "__main__":
             stop_alarm = True
             # then turn the coffee machine ON
             pwmmotor.switch_coffee_machine()
+
+        # X - Always check ldr
+        # Code for the ntc sensor
+
+        # Read the temperature sensor data
+        temp_level = sensors.ReadChannel(temp_channel)
+        temp_volts = sensors.ConvertVolts(temp_level, 2)
+        temp = sensors.ConvertTemp(temp_volts, 2)
+
+        print(temp)
+        print(temp_volts)
+
+        # # Define LED states
+        # if light_volts > 2.0:
+        #     GPIO.output(36, 1)
+        # else:
+        #     GPIO.output(36, 0)

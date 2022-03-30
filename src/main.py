@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 import pwmpump
 import pwmmotor
 import requests
-import sensors
+import temperature_regulator
 
 
 if __name__ == "__main__":
@@ -41,6 +41,8 @@ if __name__ == "__main__":
                 print("Coffee is being made")
             else:
                 print("Sending query to database...")
+
+            print(temperature_regulator.read_temperature())
 
             volume = int(requests.get('https://studev.groept.be/api/a21ib2b02/get_volume').json()[0]['volume'])
             print(volume)

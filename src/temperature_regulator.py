@@ -33,7 +33,7 @@ def read_temperature():
     C = 3.51094e-04
     D = 1.10518e-07
     R_t = (R_o * voltz_out) / (voltz_src - voltz_out)
-    temp = (A + B * ln(R_t / R_ref) + C * (ln(R_t / R_ref) ** 2) + D * (ln(R_t / R_ref) ** 3)) ** (-1)
-    temp = round(temp, 2) - 273.15
+    temp = ((A + B * ln(R_t / R_ref) + C * (ln(R_t / R_ref) ** 2) + D * (ln(R_t / R_ref) ** 3)) ** (-1)) - 273.15
+    temp = round(temp, 2)
 
-def regulate():
+    return temp

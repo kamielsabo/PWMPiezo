@@ -17,7 +17,8 @@ if __name__ == "__main__":
     today_plus_delta = datetime.now()
     now = datetime.now()
     seconds_to_new_query = 0
-    stop_alarm = False
+    coffee_is_being_made = False
+    time_coffee_was_set = datetime.now() - timedelta(minutes=15)   # Sets to 15 minutes earlier for the first run, auto updates after
     datetime_alarm = requests.get('https://studev.groept.be/api/a21ib2b02/readnext').json()
     volume = int(requests.get('https://studev.groept.be/api/a21ib2b02/get_volume').json()[0]['volume'])
     if datetime_alarm:
@@ -35,7 +36,6 @@ if __name__ == "__main__":
         seconds_to_new_query = (today_plus_delta - datetime.now()).total_seconds()
 
         if seconds_to_new_query < 0:
-            stop_alarm = False
             print("Sending query to database...")
             volume = int(requests.get('https://studev.groept.be/api/a21ib2b02/get_volume').json()[0]['volume'])
             print(volume)
@@ -49,17 +49,19 @@ if __name__ == "__main__":
                 alarm_datetime = datetime(int(a[:4]), int(a[5:7]), int(a[8:10]), int(a[11:13]), int(a[14:16]))
                 alarm = alarm_datetime
 
-            now = datetime.now()
             # get now plus 10 seconds
-            today_plus_delta = now + timedelta(seconds=30)
+            today_plus_delta = datetime.now() + timedelta(seconds=30)
 
         time_left = alarm - datetime.now()
-
-        if time_left < timedelta(seconds=0) and not stop_alarm:
+        if time_left < timedelta(seconds=0) and not coffee_is_being_made:
+            time_coffee_was_set = datetime.now()
+            coffee_is_being_made = True
             print("Starting to make coffee...")
-            sleep(0.2)
             # turn pump ON
             pwmpump.pump_water(volume)
-            stop_alarm = True
             # then turn the coffee machine ON
             pwmmotor.switch_coffee_machine()
+
+        if datetime.now() - time_coffee_was_set > timedelta(minutes=15):
+            coffee_is_being_made = False
+

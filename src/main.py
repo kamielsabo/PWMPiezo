@@ -71,8 +71,6 @@ if __name__ == "__main__":
         temp_volts = sensors.ConvertVolts(temp_level, 2)
         temp = sensors.ConvertTemp(temp_volts, 2)
 
-        print(temp)
-        print(temp_volts)
 
         # # Define LED states
         # if light_volts > 2.0:

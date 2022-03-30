@@ -38,11 +38,10 @@ if __name__ == "__main__":
         if seconds_to_new_query < 0:
             if coffee_is_being_made:
                 print("Coffee is being made")
-                print("Time remaining to make this cup: " + str(datetime.now() - time_coffee_was_set))
+                print("Time remaining to make this cup: " + str(timedelta(minutes=15) - datetime.now() - time_coffee_was_set))
             else:
                 print("Sending query to database...")
 
-            print("Coffee is being made: " + str(coffee_is_being_made))
             volume = int(requests.get('https://studev.groept.be/api/a21ib2b02/get_volume').json()[0]['volume'])
             print(volume)
             datetime_alarm = requests.get('https://studev.groept.be/api/a21ib2b02/get_next_alarm').json()

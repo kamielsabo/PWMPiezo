@@ -25,7 +25,7 @@ def read_temperature():
     volts = round(volts, 2)
 
     # Convert voltage to temperature and round to 2 decimals
-    R_o = 9660
+    R_o = 10000
     voltz_src = 3.3
     R_ref = 5000
     A = 3.35402e-03

@@ -26,13 +26,13 @@ def read_temperature():
 
     # Convert voltage to temperature and round to 2 decimals
     R_o = 10000
-    voltz_src = 3.3
+    voltage_src = 3.3
     R_ref = 5000
     A = 3.35402e-03
     B = 2.51094e-04
     C = 3.51094e-04
     D = 1.10518e-07
-    R_t = (R_o * voltz_out) / (voltz_src - voltz_out)
+    R_t = (R_o * volts) / (voltage_src - volts)
     temp = ((A + B * ln(R_t / R_ref) + C * (ln(R_t / R_ref) ** 2) + D * (ln(R_t / R_ref) ** 3)) ** (-1)) - 273.15
     temp = round(temp, 2)
 

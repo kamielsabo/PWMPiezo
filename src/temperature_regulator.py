@@ -3,11 +3,22 @@ import spidev
 from numpy import log as ln
 
 
-temperature_to_be_held = "COLD"     # set to cold temperature by default
+temperature_center = 70     # set to medium temperature by default
+temperature_offset = 3      # the allowable offset the actual temperature can have from the center temperature
 
 
-def set_temperature_regulator(temp_to_be_held):
-    temperature_to_be_held = temp_to_be_held
+def set_temperature_regulator(temperature_to_be_held):
+    if(temperature_to_be_held is "COLD"):
+        temperature_center = 60
+
+    elif(temperature_to_be_held is"MEDIUM"):
+        temperature_center = 70
+
+    elif(temperature_to_be_held is "HOT"):
+        temperature_center = 80
+
+    else:
+        temperature_center = 70     # set to medium temperature if NULL or something uninterpretable
 
 
 def read_temperature():
@@ -37,3 +48,20 @@ def read_temperature():
     temp = round(temp, 2)
 
     return temp
+
+
+def regulate():
+    current_temperature = read_temperature()
+    print("Coffee is currently " + str(read_temperature()) + "°C")
+    if abs(current_temperature - temperature_center) <  temperature_offset:
+        print("Coffee temperature")
+
+    elif current_temperature - temperature_center > temperature_offset:
+        print("Coffee is too hot, I will cool it down for you")
+
+    elif (current_temperature - temperature_center) < (-temperature_center):
+        print("Coffee is too cold, I will warm it up")
+
+
+def get_temperature_center():
+    return temperature_center

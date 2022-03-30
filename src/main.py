@@ -6,6 +6,7 @@ import gpiozero
 import time
 from datetime import datetime, timedelta
 
+import databank_retriever
 import pwmpump
 import pwmmotor
 import requests
@@ -39,10 +40,9 @@ if __name__ == "__main__":
         if seconds_to_new_query < 0:
             if coffee_is_being_made:
                 print("Coffee is being made")
+                temperature_regulator.regulate()
             else:
                 print("Sending query to database...")
-
-            print(temperature_regulator.read_temperature())
 
             volume = int(requests.get('https://studev.groept.be/api/a21ib2b02/get_volume').json()[0]['volume'])
             print(volume)
@@ -59,11 +59,15 @@ if __name__ == "__main__":
             # get now plus 10 seconds
             today_plus_delta = datetime.now() + timedelta(seconds=30)
 
+            temperature_setting_next_pot = databank_retriever.get_temperature()
+
         time_left = alarm - datetime.now()
         if time_left < timedelta(seconds=0) and not coffee_is_being_made:
-            time_coffee_was_set = datetime.now()
-            coffee_is_being_made = True
             print("Starting to make coffee...")
+            time_coffee_was_set = datetime.now()
+            temperature_regulator.set_temperature_regulator(temperature_setting_next_pot)
+            print("Coffee will be held" + str(temperature_setting_next_pot) + "at" + str(temperature_regulator.get_temperature_center()) + "°C")
+            coffee_is_being_made = True
             # turn pump ON
             pwmpump.pump_water(volume)
             # then turn the coffee machine ON

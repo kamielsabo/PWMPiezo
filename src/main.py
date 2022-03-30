@@ -15,7 +15,7 @@ import temperature_regulator
 
 if __name__ == "__main__":
     #Instantiate objects
-    temperature_regulator = temperature_regulator()
+    temp_regulator = temperature_regulator.TemperatureRegulator()
 
     # Query buffer start parameters
     today_plus_delta = datetime.now()
@@ -42,7 +42,7 @@ if __name__ == "__main__":
         if seconds_to_new_query < 0:
             if coffee_is_being_made:
                 print("Coffee is being made")
-                temperature_regulator.regulate()
+                temp_regulator.regulate()
             else:
                 print("Sending query to database...")
 
@@ -67,8 +67,8 @@ if __name__ == "__main__":
         if time_left < timedelta(seconds=0) and not coffee_is_being_made:
             print("Starting to make coffee...")
             time_coffee_was_set = datetime.now()
-            temperature_regulator.set_temperature_regulator(temperature_setting_next_pot)
-            print("Coffee will be held" + str(temperature_setting_next_pot) + "at" + str(temperature_regulator.get_temperature_center()) + "°C")
+            temp_regulator.set_temperature_regulator(temperature_setting_next_pot)
+            print("Coffee will be held" + str(temperature_setting_next_pot) + "at" + str(temp_regulator.get_temperature_center()) + "°C")
             coffee_is_being_made = True
             # turn pump ON
             pwmpump.pump_water(volume)

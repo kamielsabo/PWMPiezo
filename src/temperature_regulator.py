@@ -2,9 +2,11 @@ import requests
 import spidev
 from numpy import log as ln
 
-class temperature_regulator:
-    temperature_center = 70     # set to medium temperature by default
-    temperature_offset = 3      # the allowable offset the actual temperature can have from the center temperature
+
+class TemperatureRegulator:
+    def __init__(self):
+        temperature_center = 70     # set to medium temperature by default
+        temperature_offset = 3      # the allowable offset the actual temperature can have from the center temperature
 
     def set_temperature_regulator(self, temperature_to_be_held):
         if(temperature_to_be_held is "COLD"):

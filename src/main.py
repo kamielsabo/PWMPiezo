@@ -21,7 +21,7 @@ if __name__ == "__main__":
     time_coffee_was_set = datetime.now() - timedelta(minutes=15)   # Sets to 15 minutes earlier for the first run, auto updates after
     print("Time coffee was set initial: " + str(time_coffee_was_set))
     print("Coffee is being made: " + str(coffee_is_being_made))
-    datetime_alarm = requests.get('https://studev.groept.be/api/a21ib2b02/readnext').json()
+    datetime_alarm = requests.get('https://studev.groept.be/api/a21ib2b02/get_next_alarm').json()
     volume = int(requests.get('https://studev.groept.be/api/a21ib2b02/get_volume').json()[0]['volume'])
     if not datetime_alarm:
         a = str(datetime_alarm[0]['alarm_datetime'])

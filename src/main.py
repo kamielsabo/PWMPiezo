@@ -24,11 +24,11 @@ if __name__ == "__main__":
     datetime_alarm = requests.get('https://studev.groept.be/api/a21ib2b02/readnext').json()
     volume = int(requests.get('https://studev.groept.be/api/a21ib2b02/get_volume').json()[0]['volume'])
     if not datetime_alarm:
-        alarm = datetime.now() + timedelta(days=365)
-    else:
         a = str(datetime_alarm[0]['alarm_datetime'])
         alarm_datetime = datetime(int(a[:4]), int(a[5:7]), int(a[8:10]), int(a[11:13]), int(a[14:16]))
         alarm = alarm_datetime
+    else:
+        alarm = datetime.now() + timedelta(days=365)
 
     while True:
         # X - Always check for the next alarm
@@ -59,6 +59,7 @@ if __name__ == "__main__":
             # get now plus 10 seconds
             today_plus_delta = datetime.now() + timedelta(seconds=30)
             print("time left:" + str(alarm - datetime.now()))
+            print("alarm: " + str(alarm))
 
         time_left = alarm - datetime.now()
         if time_left < timedelta(seconds=0) and not coffee_is_being_made:

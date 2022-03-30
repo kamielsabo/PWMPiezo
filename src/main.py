@@ -43,7 +43,7 @@ if __name__ == "__main__":
             else:
                 print("Sending query to database...")
 
-            print("Coffee is being made: " str(coffee_is_being_made))
+            print("Coffee is being made: " + str(coffee_is_being_made))
             volume = int(requests.get('https://studev.groept.be/api/a21ib2b02/get_volume').json()[0]['volume'])
             print(volume)
             datetime_alarm = requests.get('https://studev.groept.be/api/a21ib2b02/readnext').json()

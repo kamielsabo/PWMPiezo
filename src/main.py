@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 import pwmpump
 import pwmmotor
 import requests
+import sensors
 
 
 if __name__ == "__main__":

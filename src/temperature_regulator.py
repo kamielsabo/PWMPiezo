@@ -10,16 +10,16 @@ class TemperatureRegulator:
 
     def set_temperature_regulator(self, temperature_to_be_held):
         if(temperature_to_be_held is "COLD"):
-            temperature_center = 60
+            self.temperature_center = 60
 
         elif(temperature_to_be_held is"MEDIUM"):
-            temperature_center = 70
+            self.temperature_center = 70
 
         elif(temperature_to_be_held is "HOT"):
-            temperature_center = 80
+            self.temperature_center = 80
 
         else:
-            temperature_center = 70     # set to medium temperature if NULL or something uninterpretable
+            self.temperature_center = 70     # set to medium temperature if NULL or something uninterpretable
 
 
     def read_temperature(self):

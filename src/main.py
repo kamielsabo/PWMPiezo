@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 
 import databank_retriever
 import pwmpump
-import pwmmotor
+import switch
 import requests
 import temperature_regulator
 
@@ -17,6 +17,7 @@ if __name__ == "__main__":
     #Instantiate objects
     temp_regulator = temperature_regulator.TemperatureRegulator()
     databank_retriever = databank_retriever.DatabankRetriever()
+    coffee_switch = switch.Switch()
 
     # Query buffer start parameters
     today_plus_delta = datetime.now()
@@ -43,6 +44,7 @@ if __name__ == "__main__":
         if seconds_to_new_query < 0:
             if coffee_is_being_made:
                 print("Coffee is being made")
+                print("Coffee will be held at" + str(temp_regulator.get_temperature_center()))
                 temp_regulator.regulate()
             else:
                 print("Sending query to database...")
@@ -74,7 +76,7 @@ if __name__ == "__main__":
             # turn pump ON
             pwmpump.pump_water(volume)
             # then turn the coffee machine ON
-            pwmmotor.switch_coffee_machine()
+            switch.switch_coffee_machine()
 
         if datetime.now() - time_coffee_was_set > timedelta(minutes=15):
             coffee_is_being_made = False

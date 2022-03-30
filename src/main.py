@@ -58,7 +58,7 @@ if __name__ == "__main__":
 
             # get now plus 10 seconds
             today_plus_delta = datetime.now() + timedelta(seconds=30)
-            print(str(alarm - datetime.now()))
+            print("time left:" + str(alarm - datetime.now()))
 
         time_left = alarm - datetime.now()
         if time_left < timedelta(seconds=0) and not coffee_is_being_made:

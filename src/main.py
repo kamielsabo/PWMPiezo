@@ -65,6 +65,7 @@ if __name__ == "__main__":
             today_plus_delta = datetime.now() + timedelta(seconds=30)
 
             temperature_setting_next_pot = data_retriever.get_temperature()
+            print("Temperature input: " + str(temperature_setting_next_pot))
 
         time_left = alarm - datetime.now()
         if time_left < timedelta(seconds=0) and not coffee_is_being_made:

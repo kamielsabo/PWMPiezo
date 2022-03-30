@@ -14,6 +14,8 @@ import temperature_regulator
 
 
 if __name__ == "__main__":
+    #Instantiate objects
+    temperature_regulator = temperature_regulator()
 
     # Query buffer start parameters
     today_plus_delta = datetime.now()

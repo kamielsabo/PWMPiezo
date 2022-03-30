@@ -14,8 +14,3 @@ def get_volume():
 
 def get_alarm_time():
     return upcomming_settings[0]["alarm_datetime"]
-
-
-print(get_volume())
-print(get_temperature())
-print(get_alarm_time())

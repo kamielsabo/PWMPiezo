@@ -27,7 +27,7 @@ def ConvertVolts(data, places):
 # NTC data, rounded to specified
 # number of decimal places.
 def ConvertTemp(voltz_out, places):
-    R_o = 9660
+    R_o = 10000
     voltz_src = 3.3
 
     R_ref = 5000

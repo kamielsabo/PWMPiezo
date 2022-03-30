@@ -76,7 +76,7 @@ if __name__ == "__main__":
             # turn pump ON
             pwmpump.pump_water(volume)
             # then turn the coffee machine ON
-            switch.switch_coffee_machine()
+            coffee_switch.switch_coffee_machine()
 
         if datetime.now() - time_coffee_was_set > timedelta(minutes=15):
             coffee_is_being_made = False

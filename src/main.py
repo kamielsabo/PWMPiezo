@@ -19,8 +19,6 @@ if __name__ == "__main__":
     seconds_to_new_query = 0
     coffee_is_being_made = False
     time_coffee_was_set = datetime.now() - timedelta(minutes=15)   # Sets to 15 minutes earlier for the first run, auto updates after
-    print("Time coffee was set initial: " + str(time_coffee_was_set))
-    print("Coffee is being made: " + str(coffee_is_being_made))
     datetime_alarm = requests.get('https://studev.groept.be/api/a21ib2b02/get_next_alarm').json()
     volume = int(requests.get('https://studev.groept.be/api/a21ib2b02/get_volume').json()[0]['volume'])
     if not datetime_alarm:
@@ -40,13 +38,14 @@ if __name__ == "__main__":
         if seconds_to_new_query < 0:
             if coffee_is_being_made:
                 print("Coffee is being made")
+                print("Time remaining to make this cup: " + str(datetime.now() - time_coffee_was_set))
             else:
                 print("Sending query to database...")
 
             print("Coffee is being made: " + str(coffee_is_being_made))
             volume = int(requests.get('https://studev.groept.be/api/a21ib2b02/get_volume').json()[0]['volume'])
             print(volume)
-            datetime_alarm = requests.get('https://studev.groept.be/api/a21ib2b02/readnext').json()
+            datetime_alarm = requests.get('https://studev.groept.be/api/a21ib2b02/get_next_alarm').json()
 
             # Duplicate code that will be removed
             if datetime_alarm:
@@ -58,8 +57,6 @@ if __name__ == "__main__":
 
             # get now plus 10 seconds
             today_plus_delta = datetime.now() + timedelta(seconds=30)
-            print("time left:" + str(alarm - datetime.now()))
-            print("alarm: " + str(alarm))
 
         time_left = alarm - datetime.now()
         if time_left < timedelta(seconds=0) and not coffee_is_being_made:

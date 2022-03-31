@@ -20,7 +20,7 @@ if __name__ == "__main__":
     coffee_switch = switch.Switch()
     water_pump = pump.Pump()
 
-    # var
+    # variables
     temperature_setting_next_pot = "MEDIUM"
 
     # Query buffer start parameters
@@ -37,9 +37,8 @@ if __name__ == "__main__":
     else:
         alarm = datetime.now() + timedelta(days=365)
 
+    # loop
     while True:
-        # X - Always check for the next alarm
-
         seconds_to_new_query = (today_plus_delta - datetime.now()).total_seconds()
 
         if seconds_to_new_query < 0:

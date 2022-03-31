@@ -42,6 +42,7 @@ if __name__ == "__main__":
         seconds_to_new_query = (today_plus_delta - datetime.now()).total_seconds()
 
         if seconds_to_new_query < 0:
+            print("\n")
             if coffee_is_being_made:
                 print("Coffee is being made")
                 print("Coffee will be held at " + str(temp_regulator.get_temperature_center()) + "°C")

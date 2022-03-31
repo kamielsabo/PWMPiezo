@@ -9,13 +9,13 @@ class TemperatureRegulator:
         self.temperature_offset = 3      # the allowable offset the actual temperature can have from the center temperature
 
     def set_temperature_regulator(self, temperature_to_be_held):
-        if(temperature_to_be_held is "COLD"):
+        if(temperature_to_be_held == "COLD"):
             self.temperature_center = 60
 
-        elif(temperature_to_be_held is"MEDIUM"):
+        elif(temperature_to_be_held == "MEDIUM"):
             self.temperature_center = 70
 
-        elif(temperature_to_be_held is "HOT"):
+        elif(temperature_to_be_held == "HOT"):
             self.temperature_center = 80
 
         else:

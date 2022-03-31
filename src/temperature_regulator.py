@@ -65,7 +65,7 @@ class TemperatureRegulator:
         elif difference > self.temperature_offset:
             print("Coffee is too hot, I will cool it down for you")
 
-        elif difference < neg_current_temperature:
+        elif difference < (self.temperature_offset * (-1)):
             print("Coffee is too cold, I will warm it up")
 
 

@@ -7,7 +7,7 @@ class Pump:
         self.out = gpiozero.PWMOutputDevice(13)
     def pump_water(self, volumeCl):
         self.vol_to_pump = 10*volumeCl
-        timeToRun = self.vol_to_pump / 29.52
+        timeToRun = self.vol_to_pump / 20.6
         self.out.frequency = 200
         self.out.value = 0.2
         newNow = datetime.now() + timedelta(seconds=timeToRun)

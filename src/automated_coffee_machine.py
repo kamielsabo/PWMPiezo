@@ -45,7 +45,7 @@ if __name__ == "__main__":
         if seconds_to_new_query < 0:
             if coffee_is_being_made:
                 print("Coffee is being made")
-                print("Coffee will be held at" + str(temp_regulator.get_temperature_center()))
+                print("Coffee will be held at " + str(temp_regulator.get_temperature_center()) + "°C")
                 temp_regulator.regulate()
             else:
                 print("Sending query to database...")

@@ -1,4 +1,3 @@
-import requests
 import spidev
 from numpy import log as ln
 

@@ -53,9 +53,9 @@ class TemperatureRegulator:
 
     def regulate(self):
         current_temperature = self.read_temperature()
-        print("Coffee is currently " + str(self.read_temperature()) + "°C")
-        if abs(current_temperature - self.temperature_center) <  self.temperature_offset:
-            print("Coffee temperature")
+        print("Coffee is currently " + str(current_temperature) + "°C")
+        if abs(current_temperature - self.temperature_center) < self.temperature_offset:
+            print("Coffee temperature on point")
 
         elif current_temperature - self.temperature_center > self.temperature_offset:
             print("Coffee is too hot, I will cool it down for you")

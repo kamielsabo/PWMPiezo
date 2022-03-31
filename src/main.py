@@ -7,7 +7,7 @@ import time
 from datetime import datetime, timedelta
 
 import databank_retriever
-import pwmpump
+import pump
 import switch
 import requests
 import temperature_regulator
@@ -18,6 +18,10 @@ if __name__ == "__main__":
     temp_regulator = temperature_regulator.TemperatureRegulator()
     data_retriever = databank_retriever.DatabankRetriever()
     coffee_switch = switch.Switch()
+    water_pump = pump.Pump()
+
+    # var
+    temperature_setting_next_pot = "MEDIUM"
 
     # Query buffer start parameters
     today_plus_delta = datetime.now()
@@ -70,12 +74,13 @@ if __name__ == "__main__":
         time_left = alarm - datetime.now()
         if time_left < timedelta(seconds=0) and not coffee_is_being_made:
             print("Starting to make coffee...")
+            print("Temperature input final: " + str(temperature_setting_next_pot))
             time_coffee_was_set = datetime.now()
-            temp_regulator.set_temperature_regulator(temperature_setting_next_pot)
+            temp_regulator.set_temperature_regulator(str(temperature_setting_next_pot))
             print("Coffee will be held " + str(temperature_setting_next_pot) + " at " + str(temp_regulator.get_temperature_center()) + "°C")
             coffee_is_being_made = True
             # turn pump ON
-            pwmpump.pump_water(volume)
+            water_pump.pump_water(volume)
             # then turn the coffee machine ON
             coffee_switch.switch_coffee_machine()
 
